@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <script src="../build/build.js"></script>
+    <style type="text/css">
+      input, select, textarea {
+        display: block;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <input name="text" type="text" value="One">
+      <input name="number" type="number" value="2">
+      <input name="date" type="date" value="2013-01-01">
+      <input name="month" type="month" value="2013-01">
+      <input name="time" type="time" value="09:23">
+      <select name="select">
+        <option value="A" selected="true">A</option>
+        <option value="B">B</option>
+      </select>
+      <select name="undefined-select">
+        <option value="A"></option>
+        <option value="B"></option>
+      </select>
+      <input name="checkboxa" type="checkbox" value="green" checked="true">
+      <input name="checkboxb" type="checkbox" value="ham">
+      <input name="radio" type="radio" value="1" checked="true">
+      <input name="radio" type="radio" value="2">
+      <textarea name="textarea">Whatup</textarea>
+    </form>
+
+    <script type="text/javascript">
+      var serialize = require('serialize')
+        , form = document.getElementsByTagName('form')[0];
+
+      console.log(serialize(form));
+
+      serialize(form, {
+        text: 'New'
+      , number: 5
+      , date: new Date
+      , month: new Date
+      , select: 'B'
+      , radio: 2
+      , textarea: 'Hallo'
+      , time: new Date
+      , checkboxa: false
+      , checkboxb: true
+      });
+
+      console.log(serialize(form));
+    </script>
+  </body>
+</html>
